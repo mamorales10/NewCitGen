@@ -135,7 +135,7 @@ class BaseWidget(object):
         self.chooseVBoxPathButton.setText(_translate("Form", "..."))
         self.ipAddressLabel.setText(_translate("Form", "IP Address:"))
         self.baseGroupNameLabel.setText(_translate("Form", "Base Group Name:"))
-        self.numClonesLabel.setText(_translate("Form", "Number of Clones:")
+        self.numClonesLabel.setText(_translate("Form", "Number of Clones:"))
         self.linkedClonesLabel.setText(_translate("Form", "Linked Clones:"))
         self.linkedClonesComboBox.setItemText(0, _translate("Form", "True"))
         self.linkedClonesComboBox.setItemText(1, _translate("Form", "False"))
