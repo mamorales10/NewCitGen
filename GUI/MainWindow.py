@@ -16,16 +16,16 @@ from ManagerBox import ManagerBox
 class MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(675, 590)#first was 768, 611
+        MainWindow.resize(675, 590)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 15, 668, 565))#third was 761, 571
+        self.tabWidget.setGeometry(QtCore.QRect(0, 15, 668, 565))
         self.tabWidget.setObjectName("tabWidget")
         self.windowBox = QtWidgets.QWidget()
         self.windowBox.setObjectName("windowBox")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.windowBox)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, -1, 658, 521))#third was 751
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, -1, 658, 521))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.hLayout_windowBox = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.hLayout_windowBox.setContentsMargins(0, 0, 0, 0)
@@ -33,6 +33,7 @@ class MainWindow(object):
         self.workshopTree = QtWidgets.QTreeWidget(self.horizontalLayoutWidget)
         self.workshopTree.itemClicked.connect(self.onItemSelected)
         self.workshopTree.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+
         self.workshopTree.customContextMenuRequested.connect(self.showContextMenu)
 
         self.workshopTree.setEnabled(True)
@@ -101,6 +102,7 @@ class MainWindow(object):
         self.vmWidget = VMWidget()
         self.vmWidget_Form = QtWidgets.QWidget()
         self.vmWidget.setupUi(self.vmWidget_Form)
+        self.vmWidget.addAdaptorButton.clicked.connect(self.addAdaptorEventHandler)
         # self.actionEventBox.addWidget(Form)
 
         # Material Config Widget
@@ -170,6 +172,7 @@ class MainWindow(object):
     	# Places the widget on the right 
     	selectedItem = self.workshopTree.currentItem()
     	if(selectedItem.parent() == None):
+    		self.baseWidget.baseGroupNameLineEdit.setText(selectedItem.text(0))
     		self.actionEventBox.addWidget(self.baseWidget_Form)
     	elif(selectedItem.text(0)[0] == "V"):
     		self.actionEventBox.addWidget(self.vmWidget_Form)
@@ -184,6 +187,10 @@ class MainWindow(object):
     		self.workshopContextMenu.popup(self.workshopTree.mapToGlobal(position))
     	else:
     		self.itemContextMenu.popup(self.workshopTree.mapToGlobal(position))
+
+    def addAdaptorEventHandler(self):
+    	networkAdaptor = self.vmWidget.addAdaptor()
+    
 
     def addWorkshopActionEvent(self):
     	pass

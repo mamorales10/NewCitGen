@@ -15,7 +15,7 @@ class SuperMenu(object):
         Form.setObjectName("Form")
         Form.resize(336, 281)
         self.treeWidget = QtWidgets.QTreeWidget(Form)
-        self.treeWidget.setGeometry(QtCore.QRect(0, 0, 660, 520))#321, 251))
+        self.treeWidget.setGeometry(QtCore.QRect(0, 0, 660, 520))
         self.treeWidget.setObjectName("treeWidget")
         self.treeWidget.header().resizeSection(0, 150)
         self.treeWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -25,19 +25,26 @@ class SuperMenu(object):
 
         # Context menu for blank space
         self.workshopMenu = QtWidgets.QMenu()
+
         self.cloneWorkshop = self.workshopMenu.addAction("Signal - Create Clones")
         self.cloneWorkshop.triggered.connect(self.cloneWorkshopActionEvent)
+        
         self.startVMs = self.workshopMenu.addAction("Signal - Start VMs (headless)")
         self.startVMs.triggered.connect(self.startVMsActionEvent)
+        
         self.poweroffVMs = self.workshopMenu.addAction("Signal - Power Off VMs")
         self.poweroffVMs.triggered.connect(self.poweroffVMsActionEvent)
+
         self.restoreSnapshots = self.workshopMenu.addAction("Signal - Restore Snapshots")
         self.restoreSnapshots.triggered.connect(self.restoreSnapshotsActionEvent)
+        
         self.deleteClones = self.workshopMenu.addAction("Signal - Delete Clones")
         self.deleteClones.triggered.connect(self.deleteClonesActionEvent)
 
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
